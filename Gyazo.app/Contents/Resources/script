@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require "#{File.dirname(__FILE__)}/config"
+
 require 'net/http'
 
 # get id
@@ -38,8 +40,6 @@ File.delete(tmpfile)
 # upload
 boundary = '----BOUNDARYBOUNDARY----'
 
-HOST = 'gyazo.com'
-CGI = '/upload.cgi'
 UA   = 'Gyazo/1.0.1'
 
 data = <<EOF
@@ -60,8 +60,8 @@ header ={
   'User-Agent' => UA
 }
 
-Net::HTTP.start(HOST,80){|http|
-  res = http.post(CGI,data,header)
+Net::HTTP.start(GyazoConfig.host, GyazoConfig.port){|http|
+  res = http.post(GyazoConfig.path, data, header)
   url = res.response.body
   IO.popen("pbcopy","r+"){|io|
     io.write url
