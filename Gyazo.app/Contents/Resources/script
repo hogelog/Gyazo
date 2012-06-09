@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-HOST = #HOST                                                                                               
-PORT = #PORT    
-PATH = #PATH                                                                                               
+HOST =                                                                                                     
+PORT =          
+PATH =                                                                                                     
 
 require 'net/http'
 
