@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
-require "#{File.dirname(__FILE__)}/config"
+HOST = #HOST                                                                                               
+PORT = #PORT    
+PATH = #PATH                                                                                               
 
 require 'net/http'
 
@@ -60,8 +62,8 @@ header ={
   'User-Agent' => UA
 }
 
-Net::HTTP.start(GyazoConfig.host, GyazoConfig.port){|http|
-  res = http.post(GyazoConfig.path, data, header)
+Net::HTTP.start(HOST, PORT){|http|
+  res = http.post(PATH, data, header)
   url = res.response.body
   IO.popen("pbcopy","r+"){|io|
     io.write url
